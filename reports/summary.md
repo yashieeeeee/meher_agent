@@ -6,7 +6,6 @@
 - evidence: `run-20260929-170034.json` (every case, run and check behind these numbers)
 - runs: 3 (the full set is replayed 3x; models are not deterministic, so every rate below is the mean of the 3 runs and the worst single run)
 - graded: 261 case runs, 273 messages, 9 failed requests
-- note: the previous summary.md was archived as summary-20260929-170035.md
 
 ## Overall and per-category pass rate
 
