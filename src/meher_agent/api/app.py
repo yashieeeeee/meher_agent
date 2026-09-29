@@ -276,10 +276,14 @@ def chat(payload: ChatRequest, response: Response, services: ServicesDep) -> Cha
             mask_text(f"{type(exc).__name__}: {exc}"),
         )
         response.headers["X-Model-Calls"] = "0"
+        response.headers["X-Prompt-Tokens"] = "0"
+        response.headers["X-Completion-Tokens"] = "0"
         response.headers["X-Turn-Error"] = "1"
         return ChatResponse(reply=_TURN_FAILED_REPLY, sources=[], actions=[], handoff=True)
 
     response.headers["X-Model-Calls"] = str(outcome.model_calls)
+    response.headers["X-Prompt-Tokens"] = str(outcome.prompt_tokens)
+    response.headers["X-Completion-Tokens"] = str(outcome.completion_tokens)
     response.headers["X-Tool-Errors"] = str(len(outcome.tool_errors))
     return ChatResponse(
         reply=outcome.reply,

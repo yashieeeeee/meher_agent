@@ -370,7 +370,7 @@ def test_unreported_usage_stays_zero_and_is_said_out_loud() -> None:
 
 def test_cost_settings_are_read_from_config_not_hardcoded() -> None:
     settings = cost_settings(Path("config.toml"))
-    assert settings.inr_per_usd == 87.0
+    assert settings.inr_per_usd == 100.0
     assert settings.input_cost_per_mtok_usd == 0.0
     assert settings.output_cost_per_mtok_usd == 0.0
 

@@ -191,7 +191,7 @@ def load_config(path: Path | str | None = None) -> Config:
             min_section_score=float(retr_t.get("min_section_score", 0.35)),
         ),
         cost=CostConfig(
-            inr_per_usd=_env_float("MEHER_INR_PER_USD", float(cost_t.get("inr_per_usd", 87.0))),
+            inr_per_usd=_env_float("MEHER_INR_PER_USD", float(cost_t.get("inr_per_usd", 100.0))),
             input_cost_per_mtok_usd=float(cost_t.get("input_cost_per_mtok_usd", 0.0)),
             output_cost_per_mtok_usd=float(cost_t.get("output_cost_per_mtok_usd", 0.0)),
         ),

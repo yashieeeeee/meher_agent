@@ -36,7 +36,7 @@ min_section_score = 0.35
 [cost]
 # Rupees per 1 USD at the provider's published rate. Used for the
 # "cost in Rs per 100 conversations" metric in reports/summary.md.
-inr_per_usd = 87.0
+inr_per_usd = 100.0
 # USD per 1M tokens. 0.0 for a local model such as Ollama.
 input_cost_per_mtok_usd = 0.0
 output_cost_per_mtok_usd = 0.0
