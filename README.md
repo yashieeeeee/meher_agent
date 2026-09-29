@@ -137,6 +137,7 @@ mean of the 3 runs and the worst run.
 4. The guard re-checks every rupee amount in the draft against the computed set. If it fails,
    one repair attempt is made; if that also fails, a safe fallback reply is used.
 5. If the model has not finished after 4 calls, the conversation is handed to the team.
+
 ## Design decisions and trade-offs
  
 - **Code computes money, the model writes prose.** Small local models get arithmetic wrong.
@@ -153,6 +154,7 @@ mean of the 3 runs and the worst run.
 - **Masked logs and API output.** Phone numbers and emails are never logged or returned raw.
 - **All settings in `config.toml`** (temperature, step limit, rupee rate, cost per token).
   Only the model endpoint uses environment variables.
+
 ## Project layout
  
 ```
@@ -167,16 +169,16 @@ config.toml        all tunable settings
  
 The expected totals in the eval cases come from `scripts/compute_expected_totals.py`, an
 independent re-implementation of the pricing rules that reads only `data/prices.csv`.
- 
+
 ## AI tools used
- 
-<!-- Fill in honestly, for example: -->
-- **[Tool name, e.g. Claude]:** used for [e.g. reviewing the design, drafting tests, writing
-  documentation]. All code was read, run and understood by me.
+
+- **ChatGPT:** used for reviewing the design, drafting tests, and writing documentation. All code was read, run and understood by me.
+- **Claude:** used for pre-submission review (packaging, measurement and documentation gaps) and failure-analysis guidance. All fixes were applied and verified by me.
 - **Local model in the product itself:** `qwen2.5:7b-instruct` via Ollama.
+
 ## Known limitations
- 
-- **Speed.** A local 7B model takes several seconds per reply. Not suited to a live UI.
+
+- **Speed.** A local 7B model on a laptop CPU took about 55 s per message in my run (p50 55.08/54.73/57.39 s, p95 90.26/106.58/97.80 s, see reports/summary.md). 9/261 case runs hit the 180 s client timeout. Not suited to a live UI.
 - **Memory is in-process.** Conversations and leads are lost when the service restarts.
 - **Streaming is simulated.** `/chat/stream` sends the finished reply word by word; it is not
   true token streaming.
